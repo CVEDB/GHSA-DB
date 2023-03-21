@@ -24,7 +24,7 @@ jobs:
       run: |
         npm ci
         npx ts-node-script ./index.ts
-      working-directory: ./
+      working-directory: .
     - run: |
         git add -A
         if [ -z "$(git status --porcelain)" ]; then

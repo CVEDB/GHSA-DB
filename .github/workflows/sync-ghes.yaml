@@ -14,17 +14,17 @@ jobs:
     - run: |
         git fetch --no-tags --prune --depth=1 origin +refs/heads/*:refs/remotes/origin/*
         git config user.email "alerts@log4j.codes"
-        git config user.name "gitworkflows"
+        git config user.name "cyberoslab"
     - uses: actions/setup-node@v3
       with:
         node-version: '16'
         cache: 'npm'
-        cache-dependency-path: script/sync-ghes/package-lock.json
+        cache-dependency-path: package-lock.json
     - name: Check starter workflows for GHES compat
       run: |
         npm ci
         npx ts-node-script ./index.ts
-      working-directory: ./script/sync-ghes
+      working-directory: ./
     - run: |
         git add -A
         if [ -z "$(git status --porcelain)" ]; then

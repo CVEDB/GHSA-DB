@@ -128,7 +128,7 @@ async function checkWorkflow(
 
 (async function main() {
   try {
-    const settings = require("./settings.json");
+    const settings = require("settings.json");
 
     const result = await checkWorkflows(
       settings.folders,
@@ -161,7 +161,7 @@ async function checkWorkflow(
     // whether it's a deletion, add, or modify and commit the new state.
     console.log("Remove all workflows");
     await exec("rm", ["-fr", ...settings.folders]);
-    await exec("rm", ["-fr", "./static/icons"]);
+    await exec("rm", ["-fr", "static/icons"]);
 
     console.log("Sync changes from main for compatible workflows");
     await exec("git", [
@@ -177,7 +177,7 @@ async function checkWorkflow(
           ];
 
           if (x.iconType === "svg") {
-            r.push(join("./static/icons", `${x.iconName}.svg`));
+            r.push(join("static/icons", `${x.iconName}.svg`));
           }
 
           return r;
